@@ -24,8 +24,11 @@ The images are treated with the following pipeline:
 	* Crop, rotate and resize the image to build an image of the card
 	* Zoom on the top left corner of the image, and split the image in 2
 	* For each region, find the biggest contour to get respectively the rank and the suit
-![Rank extracted](readme/rank.png)
-![Suit extracted](readme/suit.png)
+
+Rank extracted            |  Suit extracted
+:-------------------------:|:-------------------------:
+![](readme/rank.png)  |  ![](readme/suit.png)
+
 
 
 * Rank and Suit Classification - for each rank and suit extracted :
