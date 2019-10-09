@@ -17,8 +17,8 @@ CARD_WIDTH = 200
 
 
 
-suit_path = '/home/louis/projects/vision/suits'
-rank_path = '/home/louis/projects/vision/ranks'
+suit_path = '/home/louis/projects/CardsVision/suits'
+rank_path = '/home/louis/projects/CardsVision/ranks'
 
 
 ap = argparse.ArgumentParser()
@@ -97,9 +97,12 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  #we convert the image to a gray 
 gray = cv2.GaussianBlur(gray, (5, 5), 0)
 edge = cv2.Canny(gray, 75, 200) #we get the edges out of the photo
 
+
+
 #we find the contours in the edge photo
 cnts = cv2.findContours(edge.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-cnts = cnts[0] if imutils.is_cv2() else cnts[1]
+
+cnts = cnts[0] if len(cnts) == 2 else cnts[1]
 cnts = sorted(cnts, key = cv2.contourArea, reverse = True)
 
 rectangles_found = []
@@ -156,7 +159,7 @@ def compute_suit(suit):
 def find_rank(rank, image, path):
 	#we find the biggest contour on the image, it's the rank  (problem with 10, we only see the 0)
 	conts = cv2.findContours(rank.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-	conts = conts[0] if imutils.is_cv2() else conts[1]
+	conts = conts[0] if len(conts) == 2 else conts[1]
 	conts = sorted(conts, key = cv2.contourArea, reverse = True)
 	if len(conts)!=0:
 		x,y,w,h = cv2.boundingRect(conts[0])
@@ -175,7 +178,7 @@ def find_rank(rank, image, path):
 def find_suit(suit, image, path):
 	#we find the biggest contour on the image, it's the suit
 	conts = cv2.findContours(suit.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-	conts = conts[0] if imutils.is_cv2() else conts[1]
+	conts = conts[0] if len(conts) == 2 else conts[1]
 	conts = sorted(conts, key = cv2.contourArea, reverse = True)
 	if len(conts)!=0:
 		x,y,w,h = cv2.boundingRect(conts[0])
