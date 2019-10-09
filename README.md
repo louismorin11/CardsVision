@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Cards Classification using Computer Vision and OpenCV 👋</h1>
+<h1 align="center">Cards Classification using Computer Vision and OpenCV </h1>
 
 
 This personnal project was developped following a request from my 8 y.o sister, who wanted a way to keep track of the cards that had been played, without requiring her to actually remember them
